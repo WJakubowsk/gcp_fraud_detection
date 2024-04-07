@@ -25,8 +25,8 @@ resource "google_project_iam_binding" "default" {
   project = var.project_id
   role    = "roles/storage.admin"
   members = [
-    "user:mikolaj.galkowski7@gmail.com",
-    "user:j.przybytniowska@gmail.com",
-    "user:wiktor.jak97@gmail.com"
+    var.member_1,
+    var.member_2,
+    var.member_3
   ]
 }

@@ -1,6 +1,6 @@
 terraform {
     backend "gcs" {
-        bucket  = "13245768-bucket-tfstate"
+        bucket  = "bucket-tfstate-fraud-detection"
         prefix  = "terraform/state"
     }
 }

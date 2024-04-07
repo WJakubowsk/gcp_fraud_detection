@@ -1,14 +1,29 @@
 variable "bucket_name" {
+  type = string
   description = "Name of the Google Cloud Storage bucket"
-  default     = "13245768-bucket-tfstate"
 }
 
 variable "project_id" {
+  type = string
   description = "ID of the Google Cloud project"
-  default     = "1008128037393"
 }
 
 variable "region" {
+  type = string
   description = "Region for resources"
-  default     = "europe-west1"
+}
+
+variable "member_1" {
+  type = string
+  description = "Member 1 for IAM binding"
+}
+
+variable "member_2" {
+  type = string
+  description = "Member 2 for IAM binding"
+}
+
+variable "member_3" {
+  type = string
+  description = "Member 3 for IAM binding"
 }
