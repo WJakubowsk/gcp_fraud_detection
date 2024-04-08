@@ -31,7 +31,7 @@ resource "google_project_iam_binding" "default" {
   ]
 }
 
-# THIS WORKS BUT COMMENTED OUT FOR NOW
+# THIS WORKS BUT COMMENTED OUT FOR NOW - VMs + Load Balancer + Autoscaler
 # --------------------------------------------------------------------------------------
 # resource "google_compute_network" "vpc_network" {
 #   name = "vpc-fraud-detection-network"
@@ -108,6 +108,18 @@ resource "google_project_iam_binding" "default" {
 #   network      = google_compute_network.vpc_network.name
 # }
 # --------------------------------------------------------------------------------------
+
+# Endpoint for the model
+# resource "google_vertex_ai_endpoint" "default" {
+#   name = "fraud-detection-endpoint"
+#   display_name = "fraud-detection-endpoint"
+#   description  = "Vertex AI endpoint for fraud detection model"
+#   location     = var.region
+
+#   # TODO: probably need to include network settings here to be accessible from the VMs
+# }
+# --------------------------------------------------------------------------------------
+
 
 # TODO: (NEEDS FIX) THIS IS PROBLEMATIC CURRENTLY
 # resource "google_sql_database_instance" "instance" {
