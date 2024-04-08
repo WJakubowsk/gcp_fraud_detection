@@ -8,9 +8,19 @@ variable "project_id" {
   description = "ID of the Google Cloud project"
 }
 
+variable "project_name" {
+  type = string
+  description = "Name of the Google Cloud project"
+}
+
 variable "region" {
   type = string
   description = "Region for resources"
+}
+
+variable "zone" {
+  type = string
+  description = "Zone for resources"
 }
 
 variable "member_1" {
@@ -26,4 +36,14 @@ variable "member_2" {
 variable "member_3" {
   type = string
   description = "Member 3 for IAM binding"
+}
+
+variable "db_instance_name" {
+  type = string
+  description = "Name of the Google Cloud SQL instance"
+}
+
+variable "database_name" {
+  type = string
+  description = "Name of the Google Cloud SQL database"
 }
