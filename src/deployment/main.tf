@@ -33,33 +33,33 @@ resource "google_project_iam_binding" "default" {
 }
 
 # Cloud Run
-resource "google_cloud_run_v2_service" "default" {
-  name     = "cloudrun-service"
-  location = var.region
-  ingress = "INGRESS_TRAFFIC_ALL"
-
-  template {
-    containers {
-      image = "us-docker.pkg.dev/cloudrun/container/hello"
-    }
-  }
-}
-
-# Endpoint for the model
-resource "google_vertex_ai_endpoint" "default" {
-  name = "fraud-detection-endpoint"
-  display_name = "fraud-detection-endpoint"
-  description  = "Vertex AI endpoint for fraud detection model"
-  location     = var.region
-
-  # TODO: probably need to include network settings here to be accessible from the VMs
-}
-
-# Spanner instance
-resource "google_spanner_instance" "default" {
-  name          = "fraud-detection-spanner"
-  config        = "regional-europe-west1"
-  display_name  = "fraud-detection-spanner"
-  num_nodes     = 1
-  project       = var.project_name
-}
+#resource "google_cloud_run_v2_service" "default" {
+#  name     = "cloudrun-service"
+#  location = var.region
+#  ingress = "INGRESS_TRAFFIC_ALL"
+#
+#  template {
+#    containers {
+#      image = "us-docker.pkg.dev/cloudrun/container/hello"
+#    }
+#  }
+#}
+#
+## Endpoint for the model
+#resource "google_vertex_ai_endpoint" "default" {
+#  name = "fraud-detection-endpoint"
+#  display_name = "fraud-detection-endpoint"
+#  description  = "Vertex AI endpoint for fraud detection model"
+#  location     = var.region
+#
+#  # TODO: probably need to include network settings here to be accessible from the VMs
+#}
+#
+## Spanner instance
+#resource "google_spanner_instance" "default" {
+#  name          = "fraud-detection-spanner"
+#  config        = "regional-europe-west1"
+#  display_name  = "fraud-detection-spanner"
+#  num_nodes     = 1
+#  project       = var.project_name
+#}
