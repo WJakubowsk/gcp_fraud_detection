@@ -1,13 +1,13 @@
-# Frontend 
+# Backend
 
 Please remember to setup `.env` file with environment variables.
 
-Installation:
+Installation (inside venv):
 ```bash
-npm install
+pip install -r requirements.txt
 ```
 
 Running:
 ```bash
-npm run dev
+python manage.py runserver
 ```
