@@ -7,5 +7,5 @@ from .models import BitcoinTransaction
 class BitcoinTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = BitcoinTransaction
-        fields = ("id", "user", "amount", "date")
+        fields = ("id", "user", "amount", "date", "description")
         extra_kwargs = {"user": {"read_only": True}}
