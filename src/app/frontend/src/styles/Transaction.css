@@ -1,33 +1,50 @@
 .transaction-container {
-  padding: 10px;
-  margin: 20px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #999;
+  padding-bottom: 1.5%;
+  font-size: 110%;
+}
+
+.transaction-left {
+  display: flex;
+  align-items: start;
+  width: 80%;
+  padding-left: 3%;
+}
+
+.transaction-right {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-right: 2%;
 }
 
 .transaction-amount {
-  color: #333;
+  color: #ccc;
 }
 
 .transaction-description {
   color: #666;
+  margin-left: 5%;
 }
 
 .transaction-date {
   color: #999;
-  font-size: 0.8rem;
 }
 
-.delete-button {
-  background-color: #f44336; /* Red */
+/* .delete-button {
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
+} */
+/*
 .delete-button:hover {
-  background-color: #d32f2f; /* Darker red */
-}
+  background-color: #d32f2f; */

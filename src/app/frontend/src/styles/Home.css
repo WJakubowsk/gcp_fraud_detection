@@ -1,35 +1,151 @@
 /* Container for the whole page */
+body {
+  margin: 0;
+  padding: 0;
+  /* background-color: #DEDEE3; */
+  background-color: #202023;
+  color: white
+
+  /* font-family: Arial, sans-serif; */
+}
 div {
   font-family: Arial, sans-serif;
 }
 
-/* Styles for the notes section */
-.notes-section {
-  margin-bottom: 2rem;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.notes-section h2 {
-  color: #333;
-  font-size: 24px;
+.button-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
 }
 
-/* Styles for individual notes - assuming your Note component has some container element */
-.note {
-  background-color: #f9f9f9;
-  border-left: 5px solid #007bff;
-  margin: 10px 0;
-  padding: 10px 15px;
-  border-radius: 5px;
+.button-group button {
+  padding: 1% 2%;
+  background-color: #2F2F37;
+  color: white;
+  font-size: medium;
+  /* border: darkgray; */
+  /* borders-radius: 4px; */
+  margin: 1%;
+  margin-bottom: 0%;
+  border: none;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2); /* Add this line */
 }
 
-/* Styles for the form section */
+.button-group button.selected {
+  font-weight: bold;
+  color: white;
+  font-size: large;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3vh 3vw;
+  width: 100%;
+  height: 80vh;
+}
+
+.block {
+  padding: 5%;
+  /* border: 1px solid ; */
+  border-radius: 15px;
+  background-color: #2F2F37;
+  /* borde */
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.block1 {
+  font-size: x-large;
+  margin-left: 10%;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  max-height: 25vh;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  /* background-color: #4464cc; */
+  background: linear-gradient(to top right,#2F2F37,  #7BD1CE);
+  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.4);
+}
+
+.block2 {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  display: flex;
+  justify-content: space-between;
+  max-height: 25vh;
+  background: linear-gradient(to right,#2F2F37, #f7931a);
+}
+
+.block2 .logo {
+  flex: 0.4;
+  align-content: center;
+  /* font-size: larger; */
+  /* width: 10%; */
+}
+
+.block2 .summary {
+  flex: 0.6;
+  align-content: center;
+}
+
+.block3 {
+  margin-right: 10%;
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  max-height: 25vh;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: linear-gradient(to top left,#2F2F37, #f7931a);
+}
+
+.block3 h2 {
+  padding-bottom: 0%;
+  margin-bottom: 1%;
+}
+
+.block4 {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+  margin-left: 5%;
+  max-height: 55vh;
+}
+
+.block5 {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+  margin-right: 5%;
+  max-height: 60vh;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  overflow: hidden;
+  align-content: center;
+}
+
+.block5 .link-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+.block5 .link-container a {
+  color: #999;
+}
+
 form {
-  background-color: #fff;
-  padding: 20px;
+  padding: 1%;
+  padding-top: 0%;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
   margin: auto;
+  overflow: auto;
 }
 
 form h2 {
@@ -43,26 +159,22 @@ form label {
   margin-top: 10px;
 }
 
-form input,
-form textarea {
+form input{
   width: 100%;
-  padding: 8px;
-  margin: 8px 0 16px;
-  border: 1px solid #ccc;
+  padding: 1%;
+  margin: 1% 0 1% 0;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 form input[type="submit"] {
-  background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  background-color: #2F2F37;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
 }
 
 form input[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: black;
+  font-weight: bold;
 }
