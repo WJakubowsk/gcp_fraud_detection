@@ -1,14 +1,14 @@
 import numpy as np
 import pandas as pd
 import torch
-from torch_geometric.data import Data
 from sklearn.model_selection import train_test_split
+from torch_geometric.data import Data
 
 
 def load_data(
     DATA_PATH: str = "C:/studia/sem_8/Cloud/gcp_fraud_detection/data/",
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """ "
+    """
     Loads three datasets: features, edgelist and classes.
     """
     df_features = pd.read_csv(DATA_PATH + "txs_features.csv")
@@ -19,7 +19,7 @@ def load_data(
 
 def preprocess_data(
     df_features: pd.DataFrame, df_edges: pd.DataFrame, df_classes: pd.DataFrame
-) -> Data:
+) -> tuple[Data, pd.Index, pd.Index]:
     """
     Applies preprocessing steps to the data.
     Returns a PyTorch Geometric Data object with the indexes for the classified
@@ -32,15 +32,15 @@ def preprocess_data(
         .reset_index(drop=True)
     )
 
-    nodes = df[0].values
+    nodes = df["txId"].values
     map_id = {j: i for i, j in enumerate(nodes)}
     edges = df_edges.copy()
     edges.txId1 = edges.txId1.map(map_id)
     edges.txId2 = edges.txId2.map(map_id)
     edges = edges.astype(int)
     edge_index = np.array(edges.values).T
-    edge_index = torch.tensor(edge_index, dtype=torch.long).contiguous()
-    weights = torch.tensor([1] * edge_index.shape[1], dtype=torch.double)
+    edge_index = torch.tensor(edge_index, dtype=torch.int32).contiguous()
+    weights = torch.tensor([1] * edge_index.shape[1], dtype=torch.float32)
     labels = df["class"].values
     node_features = df.drop(["txId"], axis=1).copy()
 
@@ -52,17 +52,19 @@ def preprocess_data(
     classified_licit_idx = node_features["class"].loc[node_features["class"] == 0].index
 
     node_features = node_features.drop(columns=["Time step", "class"])
+    node_features = node_features.fillna(node_features.mean())
+
     node_features_t = torch.tensor(
-        np.array(node_features.values, dtype=np.double), dtype=torch.double
+        np.array(node_features.values, dtype=np.float32), dtype=torch.float32
     )
 
-    train_idx, valid_idx = train_test_split(classified_idx.values, test_size=0.2)
+    train_idx, valid_idx = train_test_split(classified_idx.values, test_size=0.15)
 
     data_train = Data(
         x=node_features_t,
         edge_index=edge_index,
         edge_attr=weights,
-        y=torch.tensor(labels, dtype=torch.double),
+        y=torch.tensor(labels, dtype=torch.float32),
     )
     data_train.train_idx = train_idx
     data_train.valid_idx = valid_idx
