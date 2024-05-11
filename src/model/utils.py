@@ -88,17 +88,19 @@ def visualize_predictions(
         elif node_id in classified_licit_idx:
             label = "green"
         else:
-            label = "orange" if predictions["pred_labels"][node_id] else "blue"
+            label = "white"
+            # label = "blue" if predictions["pred_labels"][node_id] else "white"
         node_color.append(label)
 
     G = nx.Graph()
     G.add_edges_from(edge_tuples)
 
     plt.figure(figsize=(16, 16))
-    plt.title("Time period: " + str(time_period))
+    plt.title("Graph network of BTC transactions from period: " + str(time_period))
     nx.draw_networkx(
         G, nodelist=sub_node_list, node_color=node_color, node_size=6, with_labels=False
     )
+    plt.legend(["Illicit", "Licit", "Unclassified"], loc="upper right")
 
     os.makedirs(path, exist_ok=True)
 

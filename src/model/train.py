@@ -36,7 +36,6 @@ def train(model, data_train: Data, optimizer, criterion, args: argparse.Namespac
 
         ## Training Step
         loss.backward()
-        # nn.utils.clip_grad_norm_(model.parameters(), 1)
         optimizer.step()
 
         # validation data
