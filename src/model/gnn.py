@@ -1,4 +1,3 @@
-import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch_geometric.nn import GATv2Conv
@@ -32,10 +31,12 @@ class FraudDetector(nn.Module):
         x, edge_index = data.x, data.edge_index
 
         x = self.conv1(x, edge_index)
-        x = F.dropout(F.relu(x), p=self.dropout, training=self.training)
+        x = F.relu(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
 
         x = self.conv2(x, edge_index)
-        x = F.dropout(F.relu(x), p=self.dropout, training=self.training)
+        x = F.relu(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
 
         x = self.post_mp(x)
         return x
