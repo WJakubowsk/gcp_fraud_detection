@@ -17,6 +17,29 @@ def load_data(
     return df_features, df_edges, df_classes
 
 
+def map_feature_data(
+    df_features: pd.DataFrame,
+    year: int = 2023,
+) -> pd.DataFrame:
+    """
+    Cleanses the feature data by generating users and mapping time steps to dates.
+    """
+    np.random.seed(0)
+    # generate users for transactions
+    df_features["User"] = np.random.randint(0, 1000, df_features.shape[0])
+    # map time step to date
+    df_features["Time step"] = pd.to_datetime(
+        df_features["Time step"].astype(str) + "-" + str(year) + "-1",
+        format="%W-%Y-%w",
+    )
+    # apply generating random day for each transaction
+    df_features["Time step"] = df_features["Time step"] + pd.to_timedelta(
+        np.random.randint(0, 7, df_features.shape[0]), unit="D"
+    )
+
+    return df_features
+
+
 def preprocess_data(
     df_features: pd.DataFrame, df_edges: pd.DataFrame, df_classes: pd.DataFrame
 ) -> tuple[Data, pd.Index, pd.Index]:
@@ -25,6 +48,8 @@ def preprocess_data(
     Returns a PyTorch Geometric Data object with the indexes for the classified
     and unclassified nodes.
     """
+    df_features = map_feature_data(df_features)
+
     df_classes["class"] = df_classes["class"].map({3: -1, 1: 1, 2: 0})
     df = (
         df_features.merge(df_classes, how="left", on="txId")
@@ -51,7 +76,7 @@ def preprocess_data(
     )
     classified_licit_idx = node_features["class"].loc[node_features["class"] == 0].index
 
-    node_features = node_features.drop(columns=["Time step", "class"])
+    node_features = node_features.drop(columns=["User", "Time step", "class"])
     node_features = node_features.fillna(node_features.mean())
 
     node_features_t = torch.tensor(

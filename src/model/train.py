@@ -23,7 +23,6 @@ def train(model, data_train: Data, optimizer, criterion, args: argparse.Namespac
     for epoch in range(args.num_epochs):
         model.train()
         optimizer.zero_grad()
-        # check for nans in data_train input
         out = model(data_train)
 
         out = out.reshape((data_train.x.shape[0]))

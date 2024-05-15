@@ -88,8 +88,7 @@ def visualize_predictions(
         elif node_id in classified_licit_idx:
             label = "green"
         else:
-            label = "white"
-            # label = "blue" if predictions["pred_labels"][node_id] else "white"
+            label = "yellow" if predictions["pred_labels"][node_id] else "blue"
         node_color.append(label)
 
     G = nx.Graph()
