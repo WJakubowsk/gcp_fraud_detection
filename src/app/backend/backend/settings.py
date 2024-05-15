@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "transactions",
     "rest_framework",
     "corsheaders",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -106,12 +107,12 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('DB_HOST'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'NAME': os.getenv('DB_NAME'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "HOST": os.getenv("DB_HOST"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "NAME": os.getenv("DB_NAME"),
     }
 }
 
