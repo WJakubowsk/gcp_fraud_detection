@@ -23,6 +23,7 @@ def map_feature_data(
 ) -> pd.DataFrame:
     """
     Cleanses the feature data by generating users and mapping time steps to dates.
+    TODO: Add amount information to the transactions.
     """
     np.random.seed(0)
     # generate users for transactions
@@ -35,6 +36,10 @@ def map_feature_data(
     # apply generating random day for each transaction
     df_features["Time step"] = df_features["Time step"] + pd.to_timedelta(
         np.random.randint(0, 7, df_features.shape[0]), unit="D"
+    )
+    # add amount information to the transactions
+    df_features["Amount"] = np.round(
+        np.random.uniform(1, 10000, df_features.shape[0]), 2
     )
 
     return df_features
@@ -76,7 +81,7 @@ def preprocess_data(
     )
     classified_licit_idx = node_features["class"].loc[node_features["class"] == 0].index
 
-    node_features = node_features.drop(columns=["User", "Time step", "class"])
+    node_features = node_features.drop(columns=["User", "Time step", "class", "Amount"])
     node_features = node_features.fillna(node_features.mean())
 
     node_features_t = torch.tensor(
