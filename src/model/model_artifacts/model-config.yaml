@@ -1,0 +1,4 @@
+name: gnn-model
+version: 1.0
+description: A Graph Neural Network model for inference
+handler: handler:GNNHandler
