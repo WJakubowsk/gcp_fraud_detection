@@ -15,7 +15,7 @@ MODEL_DISPLAY_NAME = "fraud_detector"
 MODEL_DESCRIPTION = "fraud_detector_2_heads_001_lr_128_hidden"
 
 vertexai.init(
-    project="your_project", location="us-central1", staging_bucket=BUCKET_NAME
+    project="fraud-detection", location="europe-west1", staging_bucket=BUCKET_NAME
 )
 
 model = vertexai.Model.upload(
