@@ -7,6 +7,8 @@ dotenv.load_dotenv()
 BUCKET_NAME = os.getenv("BUCKET_NAME")
 BUCKET_URI = f"gs://{BUCKET_NAME}"
 ENDPOINT_DISPLAY_NAME = "fraud_detector_endpoint"
+PROJECT_ID = os.getenv("PROJECT_ID")
+LOCATION = os.getenv("LOCATION")
 
 PYTORCH_PREDICTION_FRAUD_URI = (
     "us-docker.pkg.dev/vertex-ai/prediction/pytorch-gpu.1-12:latest"
@@ -14,9 +16,7 @@ PYTORCH_PREDICTION_FRAUD_URI = (
 MODEL_DISPLAY_NAME = "fraud_detector"
 MODEL_DESCRIPTION = "fraud_detector_2_heads_001_lr_128_hidden"
 
-vertexai.init(
-    project="fraud-detection", location="europe-west1", staging_bucket=BUCKET_NAME
-)
+vertexai.init(project=PROJECT_ID, location=LOCATION, staging_bucket=BUCKET_NAME)
 
 model = vertexai.Model.upload(
     display_name=MODEL_DISPLAY_NAME,
