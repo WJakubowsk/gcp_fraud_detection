@@ -32,7 +32,7 @@ class GNNHandler(BaseHandler):
         predictions = torch.round(inference_output).squeeze().tolist()
         return predictions
 
-    def _load_model(self):
+    def load_model(self):
         # Load the saved GNN model
         model_path = "./model_weights.pth"
         model = torch.load(model_path)
