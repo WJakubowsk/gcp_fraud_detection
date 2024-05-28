@@ -6,7 +6,7 @@ dotenv.load_dotenv()
 
 BUCKET_NAME = os.getenv("BUCKET_NAME")
 BUCKET_URI = f"gs://{BUCKET_NAME}"
-ENDPOINT_DISPLAY_NAME = "fraud_detector_endpoint"
+ENDPOINT_DISPLAY_NAME = os.getenv("ENDPOINT_DISPLAY_NAME")
 PROJECT_ID = os.getenv("PROJECT_ID")
 LOCATION = os.getenv("LOCATION")
 
@@ -17,6 +17,8 @@ MODEL_DISPLAY_NAME = "fraud_detector"
 MODEL_DESCRIPTION = "fraud_detector_2_heads_001_lr_128_hidden"
 
 vertexai.init(project=PROJECT_ID, location=LOCATION, staging_bucket=BUCKET_NAME)
+
+print("model vertex ai: ", vertexai.Model.list())
 
 model = vertexai.Model.upload(
     display_name=MODEL_DISPLAY_NAME,
