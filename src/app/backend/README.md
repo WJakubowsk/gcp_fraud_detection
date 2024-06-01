@@ -11,3 +11,9 @@ Running:
 ```bash
 python manage.py runserver
 ```
+
+### Data loading
+
+```bash
+python manage.py runscript transactions.data_loading
+```

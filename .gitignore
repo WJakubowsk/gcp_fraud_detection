@@ -193,3 +193,4 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+/src/app/backend/transactions/generate_data.ipynb
