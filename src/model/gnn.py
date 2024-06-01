@@ -6,11 +6,11 @@ from torch_geometric.nn import GATv2Conv
 class FraudDetector(nn.Module):
     def __init__(
         self,
-        input_dim: int,
-        hidden_dim: int,
-        output_dim: int,
-        heads: int,
-        dropout: float,
+        input_dim: int = 182,  # shape of features without txId, Time step and User
+        hidden_dim: int = 128,
+        output_dim: int = 1,
+        heads: int = 2,
+        dropout: float = 0.5,
     ):
         """
         Attention-based Graph Neural Network model for fraud detection.
