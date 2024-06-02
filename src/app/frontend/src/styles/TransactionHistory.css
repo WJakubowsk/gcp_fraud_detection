@@ -1,0 +1,154 @@
+::-webkit-scrollbar {
+    width: 0.7vw;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 15px;
+    border: 3px solid #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+
+.columns {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #999;
+    font-size: 1.1vw;
+    font-weight: bold;
+    width: 90vw;
+}
+
+.block-history {
+    padding-top: 2vh;
+}
+
+.transaction-container-history{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #999;
+    font-size: 0.9vw;
+    width: 90vw;
+    height: 5vh;
+}
+
+.transaction-item-history,
+.transaction-item,
+.column-item {
+    width: 20vw;
+    text-align: left;
+}
+
+.predict {
+    text-align: center;
+    width: 15vw;
+    align-content: center;
+}
+
+.transaction-fraud-licit {
+    color: green;
+    font-weight: bold;
+}
+
+.transaction-fraud-illicit {
+    color: red;
+    font-weight: bold;
+}
+
+.transaction-fraud-default {
+    color: #999;
+}
+
+.transaction-confirmed {
+    font-style: italic;
+    color: #999;
+}
+
+.transaction-confirm,
+.transaction-not-confirm,
+.transaction-predict {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 6.5vw;
+}
+
+.buttons button{
+    padding: 1vh 2vh;
+    background-color: #2F2F37;
+    color: white;
+    margin: 0.2vh;
+    border: none;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2); 
+}
+
+.pred button{
+    padding: 1vh 2vh;
+    background-color: #2F2F37;
+    color: white;
+    margin: 0.2vh;
+    border: none;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    width: 8vw;
+}
+
+.pred button{
+    padding: 1vh 2vh;
+    background-color: #2F2F37;
+    color: white;
+    margin: 0.2vh;
+    border: none;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    width: 8vw;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.pred button:hover {
+    background: linear-gradient(to top right, #61411a, #2F2F37);
+}
+
+.change {
+    /* color: white; */
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.change:hover {
+    background: linear-gradient(to top right, #61411a, #2F2F37);
+}
+
+.confirm {
+    /* color: white; */
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.confirm:hover {
+    background: linear-gradient(to top right, #4a7473, #2F2F37);
+}
+
+.predict-all {
+    background: linear-gradient(to top right, #2F2F37, #f7931a);
+    color: white; /* Adjust text color if necessary */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    cursor: pointer; /* Change cursor to pointer */
+    font-size: 16px; /* Adjust font size as needed */
+    border-radius: 5px; /* Add border radius if needed */
+    transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.predict-all:hover {
+    background: linear-gradient(to top right, #f7931a, #2F2F37); /* Optional hover effect */
+}
+

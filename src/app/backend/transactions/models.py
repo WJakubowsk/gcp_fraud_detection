@@ -9,6 +9,8 @@ class BitcoinTransaction(models.Model):
     amount = models.DecimalField(max_digits=20, decimal_places=2)
     date = models.DateTimeField(null=False, blank=False)
     description = models.CharField(null=False, blank=True, max_length=255)
+    isFraud = models.BooleanField(default=None, null=True)
+    isConfirmed = models.BooleanField(default=None, null=True)
 
     for i in range(93):
         exec(

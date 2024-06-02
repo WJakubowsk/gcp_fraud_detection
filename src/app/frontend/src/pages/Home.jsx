@@ -5,7 +5,7 @@ import Transaction from "../components/Transaction";
 import BTCTracker from "../components/BTCTracker";
 import "../styles/Home.css";
 import "../styles/Header.css";
-import Chart from "chart.js/auto";
+
 import avatar from '../assets/avatar.png';
 import { Button } from "@mui/material";
 import btcLogo from '../assets/Bitcoin.png';
@@ -131,15 +131,7 @@ function Home() {
         const total = transactions.reduce((acc, curr) => acc + parseInt(curr.amount), 0);
         setTotalAmount(total);
     };
-    const calculateTotalAmountAtTheTime = (transactions) => {
-        let totals = [];
-        let total = 0;
-        transactions.forEach( num => {
-          total += parseInt(num.amount);
-          totals.push(total);
-        });
-        return totals;
-    };
+    
 
     const handleLogout = () => {
         navigate("/logout");
@@ -173,7 +165,7 @@ function Home() {
         </div>
         <div className="block block3">
           <h2>Buy / Sell</h2>
-          
+
           <form onSubmit={createTransaction}>
             <input type="text" id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Title" required/>
             <input type="number" id="amount" name="amount" value={amount} placeholder="Amount" onChange={(e) => setAmount(e.target.value)} required />
@@ -190,8 +182,8 @@ function Home() {
         </div>
         <div className="block block5">
         <h2>Transactions</h2>
-                {transactions.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 7).map((transaction) => (
-                    <Transaction transaction={transaction} deleteTransaction={deleteTransaction} key={transaction.id}/>
+                {transactions.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6).map((transaction) => (
+                    <Transaction transaction={transaction} key={transaction.id} history={false}/>
                     ))}
         <div className="link-container">
             <a href="/transactions">View All Transactions</a>

@@ -11,4 +11,9 @@ urlpatterns = [
         views.BitcoinTransactionDelete.as_view(),
         name="transaction_delete",
     ),
+    path(
+        "update/<int:pk>/",
+        views.BitcoinTransactionUpdate.as_view(),
+        name="transaction_update",
+    ),
 ]

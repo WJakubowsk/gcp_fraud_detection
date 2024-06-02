@@ -26,3 +26,9 @@ class BitcoinTransactionDelete(generics.DestroyAPIView):
 
     def get_queryset(self):
         return BitcoinTransaction.objects.filter(user=self.request.user)
+
+
+class BitcoinTransactionUpdate(generics.UpdateAPIView):
+    queryset = BitcoinTransaction.objects.all()
+    serializer_class = BitcoinTransactionSerializer
+    lookup_field = "pk"

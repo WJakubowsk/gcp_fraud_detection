@@ -5,15 +5,15 @@
   align-items: center;
   width: 100%;
   border-bottom: 1px solid #999;
-  padding-bottom: 1.5%;
-  font-size: 110%;
+  /* padding-bottom: 0.2vh; */
+  font-size: 0.9vw;
 }
 
 .transaction-left {
   display: flex;
   align-items: start;
-  width: 80%;
-  padding-left: 3%;
+  width: 80vw;
+  padding-left: 0.5vw;
 }
 
 .transaction-right {
@@ -29,22 +29,9 @@
 
 .transaction-description {
   color: #666;
-  margin-left: 5%;
+  margin-left: 1vw;
 }
 
 .transaction-date {
   color: #999;
 }
-
-/* .delete-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-} */
-/*
-.delete-button:hover {
-  background-color: #d32f2f; */
