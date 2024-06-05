@@ -1,14 +1,8 @@
-matplotlib==3.8.4
-networkx==3.2.1
-numpy==1.26.3
-pandas==2.2.2
-scikit-learn==1.4.2
-scipy==1.13.0
-seaborn==0.13.2
+# requirements file for docker image
+fastapi==0.111.0
+pandas==2.1.4
+pydantic==2.7.1
+# scikit-learn==1.4.2
 torch==2.3.0 
-torchserve
-torch-model-archiver
 torch_geometric==2.5.3
-torch_scatter==2.1.2
-torch_sparse==0.6.18
-tqdm==4.66.4
+# tqdm==4.66.4

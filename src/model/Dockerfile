@@ -1,25 +1,17 @@
-FROM pytorch/pytorch:latest
+# Use the official Python 3.12 image from Docker Hub
+FROM python:3.12
 
-ENV TORCHSERVE_HOME /home/model-server
-ENV PATH=$TORCHSERVE_HOME/bin:$PATH
+# # Set the working directory
+# WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    openjdk-11-jdk \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN pip install torchserve torch-model-archiver
-
-RUN pip install --no-cache-dir torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-2.3.0+cu121.html
-
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY entrypoint.sh /usr/local/bin/
+# Copy the rest of the application code
 COPY . .
 
-RUN chmod +x /usr/local/bin/entrypoint.sh
-RUN chmod +r model_weights.pth
+RUN pip install --no-cache-dir torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-2.3.0+cu121.html
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8080 8081
+# Expose the port the app runs on
+EXPOSE 8080
 
-ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
+# Run the FastAPI application
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080"]
