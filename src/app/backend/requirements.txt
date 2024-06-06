@@ -11,3 +11,5 @@ python-dotenv
 django-extensions
 pandas
 tqdm
+google-cloud-secret-manager
+django-environ
