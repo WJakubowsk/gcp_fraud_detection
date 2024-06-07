@@ -6,6 +6,7 @@ class BitcoinTransaction(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="transactions"
     )
+    tx_id = models.IntegerField(null=False, blank=False)
     amount = models.DecimalField(max_digits=20, decimal_places=2)
     date = models.DateTimeField(null=False, blank=False)
     description = models.CharField(null=False, blank=True, max_length=255)
