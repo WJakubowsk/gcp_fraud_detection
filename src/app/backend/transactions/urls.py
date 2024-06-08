@@ -26,4 +26,9 @@ urlpatterns = [
         views.BitcoinTransactionPredictAll.as_view(),
         name="transaction_predict_all",
     ),
+    path(
+        "retrieve/<int:pk>/",
+        views.BitcoinTransactionRetrieve.as_view(),
+        name="transaction_retrieve",
+    ),
 ]

@@ -13,8 +13,17 @@ function Transaction({transaction, history = false}) {
 
 
     useEffect(() => {
+        // api.get(`/transactions/retrieve/${currTransaction.id}/`)
+        // .then((response) => {
+        //     setCurrTransaction(response.data);
+        // }).catch((error) => { alert(error); });
+        setCurrTransaction(transaction);
+        setLicit(transaction.isFraud == true ? 'Illicit' : transaction.isFraud == false ? 'Licit' : "Unknown");
+    }, [transaction]);
+
+    useEffect(() => {
         setLicit(currTransaction.isFraud == true ? 'Illicit' : currTransaction.isFraud == false ? 'Licit' : "Unknown");
-    }, [currTransaction.isFraud]);
+    });
 
     const handleConfirm = () => {
         updateTransaction(currTransaction.id, { isConfirmed: true });
@@ -33,8 +42,19 @@ function Transaction({transaction, history = false}) {
         updateTransaction(currTransaction.id, currTransaction.isFraud === true ? { isFraud: false } : { isFraud : true });
     };
 
-    const handleMakePrediction = () => {
-        console.log('Making prediction...');
+    const handleMakePrediction = async () => {
+        try {
+            document.body.style.cursor = 'wait';
+            await api.post(`/transactions/predict/${currTransaction.id}/`);
+            
+            const getResponse = await api.get(`/transactions/retrieve/${currTransaction.id}/`);
+            console.log(getResponse.data)
+            setCurrTransaction(getResponse.data);
+        } catch (error) {
+            alert(error);
+        } finally {
+            document.body.style.cursor = 'default';
+        }
     };
 
     if (history) {

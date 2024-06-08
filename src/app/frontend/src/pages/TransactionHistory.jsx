@@ -1,5 +1,5 @@
 // import "../styles/Home.css";
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect} from "react";
 import Transaction from "../components/Transaction";
 import {useNavigate} from "react-router-dom";
 import api from "../api";
@@ -8,7 +8,7 @@ import "../styles/TransactionHistory.css";
 
 function History() {
     const [transactions, setTransactions] = useState([])
-    const [totalAmount, setTotalAmount] = useState(0);
+    // const [totalAmount, setTotalAmount] = useState(0);
     const navigate = useNavigate();
     const date = new Date();
     const formattedDate = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -17,38 +17,43 @@ function History() {
         getTransactions();
     }, []);
 
-    useEffect(() => {
-        if (transactions.length > 0) {
-            calculateTotalAmount(transactions);
+    const predictAll = async () => {
+        console.log('Before prediction:', transactions[3]);
+        try {
+            document.body.style.cursor = 'wait';
+            await api.post(`/transactions/predict-all/`);
+            await getTransactions();
+        } catch (error) {
+            alert(error);
+        } finally {
+            document.body.style.cursor = 'default';
         }
-    }, [transactions]);
-
-    const predictAll = () => {
-        // Logic to make prediction
-        console.log('Making prediction...');
     };
 
-    const getTransactions = () => {
-        api.get("/transactions/").then((response) => response.data).then((data) => {
-            setTransactions(data);
-            calculateTotalAmount(data);
-        }).catch((error) => { alert(error); });
+    const getTransactions = async () => {
+        try{
+            const response = await api.get("/transactions/");
+            // console.log('Fetched transactions:', response.data);
+            setTransactions(response.data);
+        } catch (error) {
+            alert(error);
+        }
     }
 
-    const calculateTotalAmount = (transactions) => {
-        const total = transactions.reduce((acc, curr) => acc + parseInt(curr.amount), 0);
-        setTotalAmount(total);
-    };
+    // const calculateTotalAmount = (transactions) => {
+    //     const total = transactions.reduce((acc, curr) => acc + parseInt(curr.amount), 0);
+    //     setTotalAmount(total);
+    // };
 
-    const calculateTotalAmountAtTheTime = (transactions) => {
-        let totals = [];
-        let total = 0;
-        transactions.forEach( num => {
-          total += parseInt(num.amount);
-          totals.push(total);
-        });
-        return totals;
-    };
+    // const calculateTotalAmountAtTheTime = (transactions) => {
+    //     let totals = [];
+    //     let total = 0;
+    //     transactions.forEach( num => {
+    //       total += parseInt(num.amount);
+    //       totals.push(total);
+    //     });
+    //     return totals;
+    // };
 
     const handleLogout = () => {
         navigate("/logout");
