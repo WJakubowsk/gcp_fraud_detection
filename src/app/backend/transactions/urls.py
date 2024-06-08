@@ -16,4 +16,14 @@ urlpatterns = [
         views.BitcoinTransactionUpdate.as_view(),
         name="transaction_update",
     ),
+    path(
+        "predict/<int:pk>/",
+        views.BitcoinTransactionPredict.as_view(),
+        name="transaction_predict",
+    ),
+    path(
+        "predict-all/",
+        views.BitcoinTransactionPredictAll.as_view(),
+        name="transaction_predict_all",
+    ),
 ]

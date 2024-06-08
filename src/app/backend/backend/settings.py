@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import io
 import os
-from urllib.parse import urlparse
 from datetime import timedelta
 from pathlib import Path
+from urllib.parse import urlparse
 
 import environ
 import google.auth
