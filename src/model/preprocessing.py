@@ -23,7 +23,6 @@ def map_feature_data(
 ) -> pd.DataFrame:
     """
     Cleanses the feature data by generating users and mapping time steps to dates.
-    TODO: Add amount information to the transactions.
     """
     np.random.seed(0)
     # generate users for transactions

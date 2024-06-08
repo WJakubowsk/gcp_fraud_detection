@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI, HTTPException
 import numpy as np
 import pandas as pd
@@ -9,6 +10,8 @@ from gnn import FraudDetector
 app = FastAPI()
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MODEL_PATH = "model_weights.pth"
+DATA = torch.load("graph.pth")
+MAP_DICT = json.load(open("map_id.json"))
 
 model = FraudDetector()
 model_state_dict = torch.load(MODEL_PATH, map_location=DEVICE)
@@ -18,32 +21,20 @@ model.eval()
 
 
 class DataModel(BaseModel):
-    input_data: dict
+    """
+    list of transaction ids to predict fraud for
+    """
+
+    indices: list
 
 
 @app.post("/predict")
-async def predict(data_model: DataModel):
+async def predict(input_data: DataModel):
     try:
-        features = pd.DataFrame(data_model.input_data["features"])
-        edges = pd.DataFrame(data_model.input_data["edges"])
-
-        node_features = torch.tensor(
-            np.array(pd.DataFrame(features).values, dtype=np.float32),
-            dtype=torch.float32,
-        )
-        edge_index = torch.tensor(
-            np.array(pd.DataFrame(edges).values).T,
-            dtype=torch.int32,
-        ).contiguous()
-
-        data = Data(
-            x=node_features,
-            edge_index=edge_index,
-        )
-
+        indices = [int(MAP_DICT[str(idx)]) for idx in input_data.indices]
         with torch.no_grad():
-            output = model(data.to(DEVICE))
-        predictions = [torch.round(output).squeeze().tolist()]
+            output = model(DATA.to(DEVICE))
+        predictions = [torch.round(output).squeeze().tolist()[idx] for idx in indices]
 
         return {"predictions": predictions}
     except Exception as e:
