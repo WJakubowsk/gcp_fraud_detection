@@ -15,7 +15,7 @@ This project focuses on developing a machine learning pipeline for detecting fra
 
 - **data/**: Contains datasets used for training and evaluation.
 - **src/**: Source code for data preprocessing, model training, and deployment scripts:
-    - *frontend*:: files related to React frontend, together with CSS files for esthetics.
+    - *frontend*: files related to React frontend, together with CSS files for esthetics.
     - *backend*: files related to Django backend component of the application, along with models for data and views for website.
     - *model*: files related to GNN model comprising data engineering, machine learning and cloud deployment.
 - **.github/**: Workflow configurations for CI/CD.
@@ -36,7 +36,7 @@ This project focuses on developing a machine learning pipeline for detecting fra
 1. Prepare your dataset and place it in the `data/` directory.
 2. Train the model:
    ```sh
-   python src/train.py
+   python src/model/train.py
    ```
 3. Deploy the model to GCP - follow guidelines of README in the **model/** subdirectory.
 
@@ -45,7 +45,3 @@ This project focuses on developing a machine learning pipeline for detecting fra
 - Wiktor Jakubowski
 - Mikołaj Gałkowski
 - Julia Przybytniowska
-
-## License
-
-This project is licensed under the MIT License.
