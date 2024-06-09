@@ -1,10 +1,12 @@
 import json
-from fastapi import FastAPI, HTTPException
+
 import numpy as np
 import pandas as pd
-from pydantic import BaseModel
 import torch
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from torch_geometric.data import Data
+
 from gnn import FraudDetector
 
 app = FastAPI()
