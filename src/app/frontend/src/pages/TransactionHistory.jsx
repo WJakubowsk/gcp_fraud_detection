@@ -8,7 +8,6 @@ import "../styles/TransactionHistory.css";
 
 function History() {
     const [transactions, setTransactions] = useState([])
-    // const [totalAmount, setTotalAmount] = useState(0);
     const navigate = useNavigate();
     const date = new Date();
     const formattedDate = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -21,10 +20,15 @@ function History() {
         console.log('Before prediction:', transactions[3]);
         try {
             document.body.style.cursor = 'wait';
-            await api.post(`/transactions/predict-all/`);
+            const response = await api.post(`/transactions/predict-all/`);
             await getTransactions();
         } catch (error) {
-            alert(error);
+            if (error.response.status === 401) {
+                navigate("/login");
+                alert("Please login again, your session expired.");
+            } else {
+                alert(error);
+            }
         } finally {
             document.body.style.cursor = 'default';
         }
@@ -33,27 +37,16 @@ function History() {
     const getTransactions = async () => {
         try{
             const response = await api.get("/transactions/");
-            // console.log('Fetched transactions:', response.data);
             setTransactions(response.data);
         } catch (error) {
-            alert(error);
+            if (error.response.status === 401) {
+                navigate("/login");
+                alert("Please login again, your session expired.");
+            } else {
+                alert(error);
+            }
         }
     }
-
-    // const calculateTotalAmount = (transactions) => {
-    //     const total = transactions.reduce((acc, curr) => acc + parseInt(curr.amount), 0);
-    //     setTotalAmount(total);
-    // };
-
-    // const calculateTotalAmountAtTheTime = (transactions) => {
-    //     let totals = [];
-    //     let total = 0;
-    //     transactions.forEach( num => {
-    //       total += parseInt(num.amount);
-    //       totals.push(total);
-    //     });
-    //     return totals;
-    // };
 
     const handleLogout = () => {
         navigate("/logout");

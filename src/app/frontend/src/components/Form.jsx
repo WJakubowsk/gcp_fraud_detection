@@ -13,6 +13,16 @@ function Form({route, method}) {
 
     const name = method === "login" ? "Login" : "Register";
 
+    const handleRegisterClick = (e) => {
+        e.preventDefault();
+        navigate("/register");
+    };
+
+    const handleLoginClick = (e) => {
+        e.preventDefault();
+        navigate("/login");
+    };
+
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
@@ -26,9 +36,12 @@ function Form({route, method}) {
             } else {
                 navigate("/login");
             }
-
         } catch (error) {
-            alert(error);
+            if (method === "login" && (error.response.status==400 || error.response.status==401 )) {
+                alert("Login unsucessfull, please try again");
+            } else if (error.response.status==400 || error.response.status==401 ) {
+                alert("Registration unsucessfull, please try again");
+            }
         } finally {
             setLoading(false);
         }
@@ -39,7 +52,17 @@ function Form({route, method}) {
         <input className="form-input" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <input className="form-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         {loading && <LoadingIndicator />}
+        
     <button className="form-button" type="submit">{name}</button>
+    {name === 'Login' ? (
+        <div>
+            <p>New User? <a href="/register" onClick={handleRegisterClick} style={{color: 'white'}}>Register</a></p>
+        </div>
+    ) : (
+        <div>
+            <p>Already a user? <a href="/login" onClick={handleLoginClick} style={{color: 'white'}}>Login</a></p>
+        </div>
+    )}
     </form>
 }
 

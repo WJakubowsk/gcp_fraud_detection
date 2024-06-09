@@ -13,10 +13,6 @@ function Transaction({transaction, history = false}) {
 
 
     useEffect(() => {
-        // api.get(`/transactions/retrieve/${currTransaction.id}/`)
-        // .then((response) => {
-        //     setCurrTransaction(response.data);
-        // }).catch((error) => { alert(error); });
         setCurrTransaction(transaction);
         setLicit(transaction.isFraud == true ? 'Illicit' : transaction.isFraud == false ? 'Licit' : "Unknown");
     }, [transaction]);
@@ -35,7 +31,14 @@ function Transaction({transaction, history = false}) {
         .then((response) => {
             setCurrTransaction(response.data);
         })
-        .catch((error) => { alert(error); });
+        .catch((error) => { 
+            if (error.response.status === 401) {
+                navigate("/login");
+                alert("Please login again, your session expired.");
+            } else {
+                alert(error);
+            }
+        });
     };
 
     const handleNotConfirm = () => {
@@ -46,12 +49,16 @@ function Transaction({transaction, history = false}) {
         try {
             document.body.style.cursor = 'wait';
             await api.post(`/transactions/predict/${currTransaction.id}/`);
-            
             const getResponse = await api.get(`/transactions/retrieve/${currTransaction.id}/`);
             console.log(getResponse.data)
             setCurrTransaction(getResponse.data);
         } catch (error) {
-            alert(error);
+            if (error.response.status === 401) {
+                navigate("/login");
+                alert("Please login again, your session expired.");
+            } else {
+                alert(error);
+            }
         } finally {
             document.body.style.cursor = 'default';
         }
