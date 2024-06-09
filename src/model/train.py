@@ -33,7 +33,7 @@ def train(model, data_train: Data, optimizer, criterion, args: argparse.Namespac
         metrics = calculate_metrics(pred_scores, target_labels)
         train_acc, train_f1 = metrics["accuracy"], metrics["f1"]
 
-        ## Training Step
+        # training step
         loss.backward()
         optimizer.step()
 
