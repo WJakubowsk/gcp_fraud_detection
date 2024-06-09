@@ -138,16 +138,17 @@ def main(args):
     print("Predicting labels...")
     predictions = predict(best_model, data)
 
-    # visualize predictions
-    print("Visualizing predictions...")
-    visualize_predictions(
-        predictions,
-        time_period=10,
-        df_merge=df_features,
-        classified_illicit_idx=classified_illicit_idx,
-        classified_licit_idx=classified_licit_idx,
-        data=data,
-    )
+    # visualize predictions -- optional
+    if args.visualize:
+        print("Visualizing predictions...")
+        visualize_predictions(
+            predictions,
+            time_period=10,
+            df_merge=df_features,
+            classified_illicit_idx=classified_illicit_idx,
+            classified_licit_idx=classified_licit_idx,
+            data=data,
+        )
     print("Done.")
 
 
@@ -169,5 +170,6 @@ if __name__ == "__main__":
         type=str,
         default="C:/studia/sem_8/Cloud/gcp_fraud_detection/src/model/results/",
     )
+    parser.add_argument("--visualize", type=bool, default=False)
     args = parser.parse_args()
     main(args)

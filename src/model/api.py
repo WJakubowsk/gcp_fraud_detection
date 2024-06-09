@@ -21,7 +21,7 @@ model.eval()
 
 class DataModel(BaseModel):
     """
-    list of transaction ids to predict fraud for
+    list of transaction ids to predict fraud for.
     """
 
     indices: list
