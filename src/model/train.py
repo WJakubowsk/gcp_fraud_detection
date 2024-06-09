@@ -6,8 +6,7 @@ from torch_geometric.data import Data
 
 from gnn import FraudDetector
 from preprocessing import load_data, preprocess_data
-from utils import (calculate_metrics, save_metrics, save_model,
-                   visualize_predictions)
+from utils import calculate_metrics, save_metrics, save_model, visualize_predictions
 
 
 def train(model, data_train: Data, optimizer, criterion, args: argparse.Namespace):
