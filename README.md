@@ -15,10 +15,11 @@ This project focuses on developing a machine learning pipeline for detecting fra
 
 - **data/**: Contains datasets used for training and evaluation.
 - **src/**: Source code for data preprocessing, model training, and deployment scripts:
-    - *frontend*: files related to React frontend, together with CSS files for esthetics and frontend deployment as web UI gate to app.
-    - *backend*: files related to Django backend component of the application, along with models for data and views for website and cloud deployment.
-    - *model*: files related to GNN model comprising data engineering, machine learning and MLOps.
-- **deployment/**: files related to deployment of Google Cloud Components using Terraform.
+    - **app/**: Code for the app, including:
+        - *frontend/*: files related to React frontend, together with CSS files for esthetics and frontend deployment as web UI gate to app.
+        - *backend/*: files related to Django backend component of the application, along with models for data and views for website and cloud deployment.
+    - **deployment/**: files related to deployment of Google Cloud Components using Terraform.
+    - **model/**: files related to GNN model comprising data engineering, machine learning and MLOps.
 - **.github/**: Workflow configurations for CI/CD.
 
 ## Setup
