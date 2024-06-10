@@ -12,7 +12,7 @@
 2. Authenticate to GCP services:
 ```
 gcloud auth login
-gcloud set project <YOUR_PROJECT_ID>
+gcloud config set project <YOUR_PROJECT_ID>
 gcloud auth configure-docker <YOUR_REGION>-docker.pkg.dev
 gcloud services enable artifactregistry.googleapis.com
 gcloud artifacts repositories create docker-model-repo \
