@@ -194,3 +194,11 @@ override.tf.json
 .terraformrc
 terraform.rc
 /src/app/backend/transactions/generate_data.ipynb
+# data files
+data/
+
+# result files
+results/
+
+# model weights
+*.pth
