@@ -15,12 +15,12 @@ class BitcoinTransaction(models.Model):
 
     for i in range(93):
         exec(
-            f"Local_feature_{i+1} = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True, verbose_name='Local Feature {i+1}')"
+            f"Local_feature_{i + 1} = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True, verbose_name='Local Feature {i + 1}')"
         )
 
     for i in range(72):
         exec(
-            f"Aggregate_feature_{i+1} = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True, verbose_name='Aggregate Feature {i+1}')"
+            f"Aggregate_feature_{i + 1} = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True, verbose_name='Aggregate Feature {i + 1}')"
         )
 
     for feature in ["in_txs_degree", "out_txs_degree"]:
