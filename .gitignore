@@ -193,3 +193,11 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+# data files
+data/
+
+# result files
+results/
+
+# model weights
+*.pth

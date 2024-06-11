@@ -1,0 +1,32 @@
+name: Python Code Standards Check and GCP Setup
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  code-quality-check:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: pip install black flake8 isort
+
+      - name: Check Code with Black
+        run: black --check .
+
+      - name: Check Code with Flake8
+        run: flake8 --ignore=E203,E501,W503,W605 .
+
+      - name: Check Imports with isort
+        run: isort --check-only --profile black .
