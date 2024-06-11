@@ -1,0 +1,6 @@
+# requirements file for docker image
+fastapi==0.111.0
+pandas==2.1.4
+pydantic==2.7.1
+torch==2.3.0 
+torch_geometric==2.5.3
