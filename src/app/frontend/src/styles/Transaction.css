@@ -1,0 +1,37 @@
+.transaction-container {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #999;
+  /* padding-bottom: 0.2vh; */
+  font-size: 0.9vw;
+}
+
+.transaction-left {
+  display: flex;
+  align-items: start;
+  width: 80vw;
+  padding-left: 0.5vw;
+}
+
+.transaction-right {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-right: 2%;
+}
+
+.transaction-amount {
+  color: #ccc;
+}
+
+.transaction-description {
+  color: #666;
+  margin-left: 1vw;
+}
+
+.transaction-date {
+  color: #999;
+}

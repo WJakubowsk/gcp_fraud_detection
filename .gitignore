@@ -196,8 +196,5 @@ terraform.rc
 # data files
 data/
 
-# result files
-results/
-
 # model weights
 *.pth

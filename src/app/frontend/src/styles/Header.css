@@ -1,0 +1,39 @@
+.header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    margin-bottom: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 2%;
+  }
+
+  .header .title {
+    display: flex;
+    align-items: center;
+    margin-left: 3%;
+    width: 50%;
+    padding-left: 3%;
+  }
+
+  .header .title h1 {
+    margin-right: 5%;
+  }
+  .header .title h3 {
+    margin-right: 2%;
+  }
+
+  .header .user-info {
+    align-items: center;
+    margin-right: 4%;
+    max-width: 10%;
+  }
+
+  .header .user-info .settings {
+    background-color: #2F2F37;
+    color: white;
+    padding: 20%;
+    border-radius: 8px;
+  }
