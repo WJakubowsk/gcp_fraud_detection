@@ -24,28 +24,26 @@ This project focuses on developing a machine learning pipeline for detecting fra
     - **model/**: files related to GNN model comprising data engineering, machine learning and MLOps.
 - **.github/**: Workflow configurations for CI/CD.
 
-## Setup
+## Technologies
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/WJakubowsk/gcp_fraud_detection.git
-   ```
-2. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
+- Frontend: React, Vite,
+- Backend: Django, Uvicorn,
+- ML: PyTorch, Flask,
+- Infra: Docker, Terraform,
+- Cloud: GCP Cloud Run, Cloud SQL, Artifact Registry.
 
 ## Usage
 
 1. Prepare your dataset and place it in the `data/` directory.
-2. Train the model:
+2. Deploy infrastructure using Terraform and `deployment/` files. 
+3. Train the model:
    ```sh
    python src/model/train.py
    ```
-3. Deploy the model to GCP - follow guidelines of README in the **model/** subdirectory.
+4. Deploy the model to GCP - follow guidelines of README in the **model/** subdirectory.
 
 ## Contributors
 
-- Wiktor Jakubowski - ML & MLOps
-- Mikołaj Gałkowski - Django & Terraform
-- Julia Przybytniowska - React
+- Julia Przybytniowska (Frontend)
+- Mikołaj Gałkowski (Backend)
+- Wiktor Jakubowski (ML)
