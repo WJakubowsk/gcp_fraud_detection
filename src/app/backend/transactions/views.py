@@ -36,12 +36,12 @@ class BitcoinTransactionUpdate(generics.UpdateAPIView):
     queryset = BitcoinTransaction.objects.all()
     serializer_class = BitcoinTransactionSerializer
     lookup_field = "pk"
-    
-    
+
+
 class BitcoinTransactionRetrieve(generics.RetrieveAPIView):
     serializer_class = BitcoinTransactionSerializer
     permission_classes = (IsAuthenticated,)
-    lookup_field = 'pk'
+    lookup_field = "pk"
 
     def get_queryset(self):
         return BitcoinTransaction.objects.filter(user=self.request.user)
