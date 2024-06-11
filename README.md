@@ -28,7 +28,7 @@ This project focuses on developing a machine learning pipeline for detecting fra
 
 - Frontend: React, Vite,
 - Backend: Django, Uvicorn,
-- ML: PyTorch, Flask,
+- ML: PyTorch, FastAPI,
 - Infra: Docker, Terraform,
 - Cloud: GCP Cloud Run, Cloud SQL, Artifact Registry.
 
