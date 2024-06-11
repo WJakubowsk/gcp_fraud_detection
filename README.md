@@ -6,6 +6,8 @@ This project focuses on developing a machine learning pipeline for detecting fra
 
 ## Features
 
+![Diagram architecture](architecture.svg)
+
 - **Graph Neural Networks (GNN):** Utilizes advanced GNN models to analyze transaction data and detect potential fraud.
 - **Google Cloud Platform Deployment:** Implements the machine learning pipeline on GCP for scalability and efficiency.
 - **Data Handling:** Processes and manages transaction data for training and inference.
